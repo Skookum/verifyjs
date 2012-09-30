@@ -7,11 +7,6 @@
 npm install verifyjs
 ```
 
-###Install with Git:
-``` javascript
-var verifyjs = require('verifyjs')
-```
-
 ## Usage
 
 require as module
