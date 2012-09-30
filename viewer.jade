@@ -1,0 +1,24 @@
+!!! 5
+html
+  head
+    meta(charset="utf-8")
+    title JSHint Viewer for Project
+
+    link(rel='stylesheet', href='/styles/main.css' )
+  body
+    h1 JSHint Results - #{Object.keys(results).length} files with errors
+    ul
+      each errors, file in results
+        li.file.all_transitions
+          .filename= file
+          .num_errors= errors.length
+          ul.errors.all_transitions
+            each error in errors
+              if error
+                li.error #{error.line}:#{error.character} - #{error.reason}
+    
+    //- != inspect(results)
+
+    script(src="/js/jquery.js")
+    script(src="/js/knockout.js")
+    script(src="/js/main.js")
