@@ -1,17 +1,32 @@
 {
-    "name": "verifyjs",
-    "version": "0.0.1",
-    "directories": {},
-    "engines": {
-        "node": ">=0.6.6",
-        "npm": ">=1.1"
-    },
-    "dependencies": {
-        "jade": "0.27.0",
-        "express": "3.0.0rc2",
-        "stylus": "0.24.0",
-        "async": "0.1.18",
-        "underscore": "1.3.3",
-        "jshint": "0.9.0"
-    }
+  "name": "verifyjs",
+  "version": "0.0.1",
+  "directories": {},
+  "engines": {
+    "node": ">=0.6.6",
+    "npm": ">=1.1"
+  },
+  "dependencies": {
+    "jade": "0.27.0",
+    "express": "3.0.0rc2",
+    "stylus": "0.24.0",
+    "async": "0.1.18",
+    "underscore": "1.3.3",
+    "jshint": "0.9.0"
+  },
+  "_npmUser": {
+    "name": "snodgrass23",
+    "email": "snodgrass23@gmail.com"
+  },
+  "_id": "verifyjs@0.0.1",
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_npmVersion": "1.1.16",
+  "_nodeVersion": "v0.6.17",
+  "_defaultsLoaded": true,
+  "dist": {
+    "shasum": "360dbc1b76122314fe524ca4114890dc2159c819"
+  },
+  "_from": "verifyjs@0.0.1"
 }

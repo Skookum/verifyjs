@@ -9,8 +9,14 @@ var fs = require('fs'),
     jshint = require('jshint'),
     hint = jshint.JSHINT;
 
-var ignoreDirectories;
-module.exports.errors = {};
+var ignoreDirectories, 
+    errors = {}, 
+    summary  = {
+      num_files: 0
+    };
+
+module.exports.errors = errors;
+module.exports.summary = summary;
 
 module.exports.hint = function(options) {
   options = options || {};
@@ -48,8 +54,9 @@ function lintfiles(base, dir, linting_options){
     if (extname(file) !== '.js') return;
     var filecontents = fs.readFileSync(base_dir+"/"+file, 'utf-8');
     var has_errors = hint(filecontents, linting_options);
+    summary.num_files++;
     if (!has_errors) {
-      module.exports.errors[dir+"/"+file] = hint.errors;
+      errors[dir+"/"+file] = hint.errors;
     }
   }
 }

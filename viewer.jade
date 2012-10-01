@@ -6,19 +6,40 @@ html
 
     link(rel='stylesheet', href='/styles/main.css' )
   body
-    h1 JSHint Results - #{Object.keys(results).length} files with errors
-    ul
-      each errors, file in results
-        li.file.all_transitions
-          .filename= file
-          .num_errors= errors.length
-          ul.errors.all_transitions
-            each error in errors
-              if error
-                li.error #{error.line}:#{error.character} - #{error.reason}
-    
+    h1 verifyjs
+    ul.summary
+      li Files checked: #{summary.num_files}
+      li
+        | Files with function that are too complex: 
+        span(data-bind="text:numberOfFilesWithComplexityError")
+
+    .details
+      h2 
+        | JSHint Result File Details - #{Object.keys(results).length} files with errors
+        span.filter(data-bind="text:filterText, click:switchFilter")
+      ul.files(data-bind="foreach:fileList")
+        li.file.all_transitions(data-bind="css:{highlight:hasComplexityError}")
+          .filename(data-bind="text:name")
+          .complexity(data-bind="visible:hasComplexityError, text:highestComplexity")
+          .num_errors(data-bind="text:errors().length")
+          ul.errors.all_transitions(data-bind="foreach:errors")
+            li.error(data-bind="click:click, css:{highlight:isComplexityError}")
+              .reason(data-bind="text:description")
+
+
+    .modal(data-bind="css:{open:hasActiveError}, click:closeModal")
+      ul.content(data-bind="click:stopProp")
+        li: strong CODE:
+        li(data-bind="text:activeError() && activeError().evidence")
+        li: strong ERROR:
+        li(data-bind="text:activeError() && activeError().description")
+
     //- != inspect(results)
 
+    != embed_json(summary, 'summary');
+    != embed_json(results, 'files');
+
     script(src="/js/jquery.js")
+    script(src="/js/underscore.js")
     script(src="/js/knockout.js")
     script(src="/js/main.js")

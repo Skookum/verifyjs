@@ -10,6 +10,10 @@ module.exports = function(options) {
   app.locals({
     inspect: function (obj) {
       return '<pre>'+require('util').inspect(obj, true, 5)+'</pre>';
+    },
+    embed_json: function(obj, name) {
+      var escaped = JSON.stringify(obj);
+      return "<script> " + name + " = " + escaped + "; </script>";
     }
   });
 
@@ -37,7 +41,7 @@ module.exports = function(options) {
   linter.hint(options);
 
   app.get('/*', function(req, res) {
-    return res.render(path.join(__dirname, 'viewer'), {results:linter.errors});
+    return res.render(path.join(__dirname, 'viewer'), {summary: linter.summary, results:linter.errors});
   });
 
   app.listen(options.port || 8080);
