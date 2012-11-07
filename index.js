@@ -1,10 +1,13 @@
 var express = require('express'),
     stylus = require('stylus'),
     path = require('path'),
-    linter = require('./linter'),
+    analysis = require('./lib/analysis'),
     app = express();
 
-module.exports = function(options) {
+
+module.exports.analyzer = 
+
+module.exports.viewer = function(options) {
   options = options || {};
 
   app.locals({
@@ -38,10 +41,10 @@ module.exports = function(options) {
   app.use(express['static'](path.join(__dirname, 'public')));
 
 
-  linter.hint(options);
+  analysis.hint(options);
 
   app.get('/*', function(req, res) {
-    return res.render(path.join(__dirname, 'viewer'), {summary: linter.summary, results:linter.errors});
+    return res.render(path.join(__dirname, 'viewer'), {summary: analysis.summary, results:analysis.errors});
   });
 
   app.listen(options.port || 8080);
