@@ -2,10 +2,12 @@ var express = require('express'),
     stylus = require('stylus'),
     path = require('path'),
     analysis = require('./lib/analysis'),
+    jshint = require('./lib/jshint'),
     app = express();
 
 
-module.exports.analyzer = 
+module.exports.analyzer = analysis;
+module.exports.jshint = jshint;
 
 module.exports.viewer = function(options) {
   options = options || {};
