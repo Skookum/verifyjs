@@ -1,5 +1,6 @@
-should = require('should')
-assert = require('assert')
+should = require 'should'
+assert = require 'assert'
+util = require 'util'
 
 analysis = require '../lib/analysis'
 jshint = require '../lib/jshint'
@@ -32,7 +33,7 @@ describe 'JSHint', ->
 
     it 'should return a list of results', (done) ->
       jshint.hintFile file, options, (err, results) ->
-        # console.log results.functionDetails
+        console.log(util.inspect(results, false, null));
         results.functionDetails.should.exist
         results.functionDetails.complexFunction.length.should.equal 1
         results.complexityErrors.should.exist
